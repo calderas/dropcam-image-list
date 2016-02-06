@@ -70,9 +70,7 @@ function mailParserFn(email) {
       console.log("attachments:", mail_object.attachments.length);
       mail_object.attachments.forEach(function(attachment) {
         console.log("attachment");
-        var name = new Date(mail_object.date).toISOString();
-        name += ".jpeg";
-        // saveImage(attachment.content, name);
+        var name = new Date(mail_object.date).toISOString() + ".jpeg";
         uploadToS3(attachment.content, name);
       });
     }
@@ -102,8 +100,17 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(request, response) {
   getList(function(data) {
+
+    data.Contents.forEach(function(item){
+      item.date = item.Key.split(".jpeg")[0];
+    });
+
+    var images = data.Contents.sort(function(a,b){
+      return new Date(b.date) - new Date(a.date);
+    });
+    images = images.splice(0, 15);
     response.render('pages/index', {
-      data: data
+      images: images
     });
   });
 });
