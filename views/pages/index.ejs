@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="css/base-min.css" />
+</head>
+<body>
+  <%
+    data.Contents.forEach(function(item){
+      item.date = item.Key.split(".jpeg")[0];
+    })
+    var images = data.Contents.sort(function(a,b){
+      return new Date(b.date) - new Date(a.date);
+    });
+  %>
+  <ul>
+    <% for(var i=0; i < images.length; i++) { %>
+     <li>
+       <%=new Date(images[i].date) %>
+       <p>
+         <img src="https://s3.amazonaws.com/dropcam-image/<%= data.Contents[i].Key %>"/>
+       </p>
+     </li>
+    <% } %>
+  </ul>
+</body>
+</html>
