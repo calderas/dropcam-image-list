@@ -1,0 +1,21 @@
+{
+  "name": "mailimage",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {},
+  "dependencies": {
+    "aws-sdk": "^2.2.33",
+    "body-parser": "^1.14.2",
+    "formidable": "^1.0.17",
+    "mailparser": "^0.5.3"
+  },
+  "engines": {
+    "node": "v5.4.0"
+  }
+}
