@@ -12,12 +12,6 @@ var AWS_ACCESS_KEY = process.env.AWS_ACCESS_KEY;
 var AWS_SECRET_KEY = process.env.AWS_SECRET_KEY;
 var S3_BUCKET = process.env.S3_BUCKET;
 
-function saveImage(image, name) {
-  var f = fs.createWriteStream(name);
-  f.write(image);
-  f.end();
-}
-
 function uploadToS3(image, fileName) {
   console.log("uploading to S3", fileName);
   var s3 = awsConfig();
@@ -111,9 +105,12 @@ app.get('/', function(request, response) {
       return new Date(b.date) - new Date(a.date);
     });
     images = images.splice(0, 15);
-    response.render('index', {
+
+    var data = {
+      bucket: S3_BUCKET,
       images: images
-    });
+    };
+    response.render('index', {data: data});
   });
 });
 
