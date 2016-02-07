@@ -96,7 +96,9 @@ function uploadRequest(request, response) {
 app.set('port', (PORT || 5000));
 app.use(express.static(__dirname + '/public'));
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
+app.set('view engine', 'jsx');
+app.engine('jsx', require('express-react-views').createEngine());
+
 
 app.get('/', function(request, response) {
   getList(function(data) {
@@ -109,7 +111,7 @@ app.get('/', function(request, response) {
       return new Date(b.date) - new Date(a.date);
     });
     images = images.splice(0, 15);
-    response.render('pages/index', {
+    response.render('index', {
       images: images
     });
   });

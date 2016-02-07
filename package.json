@@ -14,8 +14,11 @@
     "body-parser": "^1.14.2",
     "ejs": "^2.4.1",
     "express": "^4.13.4",
+    "express-react-views": "^0.9.0",
     "formidable": "^1.0.17",
-    "mailparser": "^0.5.3"
+    "mailparser": "^0.5.3",
+    "react": "^0.14.7",
+    "react-dom": "^0.14.7"
   },
   "engines": {
     "node": "v5.4.0"
