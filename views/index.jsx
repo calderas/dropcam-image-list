@@ -20,7 +20,7 @@ var ImageList = React.createClass({
       <DefaultLayout title={this.props.title}>
         <ul className="image-list">
         {this.props.images.map(function(image) {
-          return <ListItemWrapper data={image}/>;
+          return <ListItemWrapper key={image.Key} data={image}/>;
         })}
         </ul>
       </DefaultLayout>
