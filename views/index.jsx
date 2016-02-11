@@ -3,9 +3,10 @@ var DefaultLayout = require('./layouts/default');
 
 var ListItemWrapper = React.createClass({
   render: function() {
+    var itemDate = new Date(this.props.data.date);
     return (
       <li className="image-list-item">
-        {this.props.data.date}
+        {itemDate.toLocaleDateString()} - {itemDate.toLocaleTimeString()}
         <p>
           <img className="image-item" src={"https://s3.amazonaws.com/" + this.props.bucket + "/" + this.props.data.Key} />
         </p>
