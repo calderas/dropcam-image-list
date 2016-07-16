@@ -1,3 +1,4 @@
+require('newrelic');
 var aws = require('aws-sdk');
 var express = require('express');
 var formidable = require('formidable');
