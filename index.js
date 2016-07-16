@@ -38,9 +38,16 @@ function uploadToS3(image, fileName) {
 }
 
 function getS3List(cb) {
+  var date = new Date();
+  var month = ("0" + (date.getMonth() + 1)).slice(-2)
+  var dateFilter = date.getFullYear() + "-" + month;
+
   var params = {
-    Bucket: S3_BUCKET
+    Bucket: S3_BUCKET,
+    MaxKeys: 100,
+    Marker: dateFilter
   };
+
   awsS3.listObjects(params, function(err, data) {
     if (err) console.log(err, err.stack);
     else {
@@ -91,7 +98,7 @@ function parseS3list(data) {
     return new Date(b.date) - new Date(a.date);
   });
 
-  return images.splice(0, 15);
+  return images.splice(0, 24);
 }
 
 app.set('port', (PORT || 5000));
